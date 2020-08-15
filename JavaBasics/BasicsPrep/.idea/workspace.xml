@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="927e3be5-b3cf-4046-8f64-fedbd4ee4006" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="205" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZRgVXpFyPEUEN7fQe53hbT6WUj" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="RunManager" selected="Application.cinemaTickets">
+    <configuration name="bachelorParty" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bachelorParty" />
+      <module name="BasicsPrep" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bus" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="bus" />
+      <module name="BasicsPrep" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="cinemaTickets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cinemaTickets" />
+      <module name="BasicsPrep" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="lengthTraining" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lengthTraining" />
+      <module name="BasicsPrep" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="multiplyTable" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="multiplyTable" />
+      <module name="BasicsPrep" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.bachelorParty" />
+      <item itemvalue="Application.bus" />
+      <item itemvalue="Application.multiplyTable" />
+      <item itemvalue="Application.lengthTraining" />
+      <item itemvalue="Application.cinemaTickets" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.cinemaTickets" />
+        <item itemvalue="Application.lengthTraining" />
+        <item itemvalue="Application.multiplyTable" />
+        <item itemvalue="Application.bachelorParty" />
+        <item itemvalue="Application.bus" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="927e3be5-b3cf-4046-8f64-fedbd4ee4006" name="Default Changelist" comment="" />
+      <created>1584807344231</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584807344231</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1408" y="362" width="872" height="683" key="#Live_Templates" timestamp="1584812432539">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1408" y="362" width="872" height="683" key="#Live_Templates/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584812432539" />
+    <state width="1440" height="399" key="GridCell.Tab.0.bottom" timestamp="1585074376408">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1440" height="399" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1585074376408" />
+    <state width="1440" height="399" key="GridCell.Tab.0.center" timestamp="1585074376408">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1440" height="399" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1585074376408" />
+    <state width="1440" height="399" key="GridCell.Tab.0.left" timestamp="1585074376408">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1440" height="399" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1585074376408" />
+    <state width="1440" height="399" key="GridCell.Tab.0.right" timestamp="1585074376408">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1440" height="399" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1585074376408" />
+    <state width="1440" height="324" key="GridCell.Tab.1.bottom" timestamp="1584885445640">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1440" height="324" key="GridCell.Tab.1.bottom/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584885445640" />
+    <state width="1440" height="324" key="GridCell.Tab.1.center" timestamp="1584885445640">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1440" height="324" key="GridCell.Tab.1.center/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584885445640" />
+    <state width="1440" height="324" key="GridCell.Tab.1.left" timestamp="1584885445640">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1440" height="324" key="GridCell.Tab.1.left/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584885445640" />
+    <state width="1440" height="324" key="GridCell.Tab.1.right" timestamp="1584885445640">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1440" height="324" key="GridCell.Tab.1.right/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584885445640" />
+    <state x="1512" y="524" key="com.intellij.ide.util.TipDialog" timestamp="1585070624468">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1512" y="524" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1585070624468" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BasicsPrep$bakingCompetition.ic" NAME="bakingCompetition Coverage Results" MODIFIED="1584817691944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

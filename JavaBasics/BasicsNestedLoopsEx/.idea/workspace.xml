@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="e8d58355-024c-4575-9f28-e63dfc89f766" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZAjdt2NaXlIy2Msny2wYyeIku0" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
+  </component>
+  <component name="RunManager" selected="Application.cinemaTickets">
+    <configuration name="cinemaTickets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cinemaTickets" />
+      <module name="BasicsNestedLoopsEx" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="passwordGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="passwordGenerator" />
+      <module name="BasicsNestedLoopsEx" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="specialNumber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="specialNumber" />
+      <module name="BasicsNestedLoopsEx" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sumPrimeNonPrime" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sumPrimeNonPrime" />
+      <module name="BasicsNestedLoopsEx" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="trainTheTrainers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="trainTheTrainers" />
+      <module name="BasicsNestedLoopsEx" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.sumPrimeNonPrime" />
+      <item itemvalue="Application.trainTheTrainers" />
+      <item itemvalue="Application.passwordGenerator" />
+      <item itemvalue="Application.specialNumber" />
+      <item itemvalue="Application.cinemaTickets" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.cinemaTickets" />
+        <item itemvalue="Application.specialNumber" />
+        <item itemvalue="Application.passwordGenerator" />
+        <item itemvalue="Application.trainTheTrainers" />
+        <item itemvalue="Application.sumPrimeNonPrime" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e8d58355-024c-4575-9f28-e63dfc89f766" name="Default Changelist" comment="" />
+      <created>1584288882578</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1584288882578</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1260" y="103" width="1207" height="1200" key="DiffContextDialog" timestamp="1584294018313">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1260" y="103" width="1207" height="1200" key="DiffContextDialog/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584294018313" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1584711919885">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584711919885" />
+    <state width="2517" height="165" key="GridCell.Tab.0.bottom" timestamp="1584542076619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="165" key="GridCell.Tab.0.bottom/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584542076619" />
+    <state width="2517" height="165" key="GridCell.Tab.0.center" timestamp="1584542076619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="165" key="GridCell.Tab.0.center/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584542076619" />
+    <state width="2517" height="165" key="GridCell.Tab.0.left" timestamp="1584542076619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="165" key="GridCell.Tab.0.left/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584542076619" />
+    <state width="2517" height="165" key="GridCell.Tab.0.right" timestamp="1584542076619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="165" key="GridCell.Tab.0.right/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584542076619" />
+    <state width="2517" height="165" key="GridCell.Tab.1.bottom" timestamp="1584542076619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="165" key="GridCell.Tab.1.bottom/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584542076619" />
+    <state width="2517" height="165" key="GridCell.Tab.1.center" timestamp="1584542076619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="165" key="GridCell.Tab.1.center/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584542076619" />
+    <state width="2517" height="165" key="GridCell.Tab.1.left" timestamp="1584542076619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="165" key="GridCell.Tab.1.left/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584542076619" />
+    <state width="2517" height="165" key="GridCell.Tab.1.right" timestamp="1584542076619">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="165" key="GridCell.Tab.1.right/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584542076619" />
+    <state x="1364" y="345" key="SettingsEditor" timestamp="1584293632581">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1364" y="345" key="SettingsEditor/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584293632581" />
+    <state x="1560" y="527" key="com.intellij.ide.util.TipDialog" timestamp="1584711889142">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1560" y="527" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584711889142" />
+    <state x="1519" y="334" key="run.anything.popup" timestamp="1584292663902">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1519" y="334" key="run.anything.popup/0.0.2560.1400/-1920.360.1920.1040@0.0.2560.1400" timestamp="1584292663902" />
+  </component>
+</project>
