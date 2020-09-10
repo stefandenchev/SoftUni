@@ -65,7 +65,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.TheIsleOfManTTRace", "03
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.PracticeSessions", "02.PracticeSessions\02.PracticeSessions.csproj", "{9F34AA9E-D623-4C2D-975E-5321981A07EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{68832DA8-AAD8-4235-9800-9CC426DE169E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{68832DA8-AAD8-4235-9800-9CC426DE169E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.UsernameRedo", "01.UsernameRedo\01.UsernameRedo.csproj", "{A8B0F4FC-E997-40EC-BC52-5307D317D969}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.PasswordRedo", "02.PasswordRedo\02.PasswordRedo.csproj", "{C8E9237E-CC5C-413B-8690-69610568E239}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.FollowersRedo", "03.FollowersRedo\03.FollowersRedo.csproj", "{1EAC2E31-4F94-4E91-A155-84497662CD4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -201,6 +207,18 @@ Global
 		{68832DA8-AAD8-4235-9800-9CC426DE169E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68832DA8-AAD8-4235-9800-9CC426DE169E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68832DA8-AAD8-4235-9800-9CC426DE169E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8B0F4FC-E997-40EC-BC52-5307D317D969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8B0F4FC-E997-40EC-BC52-5307D317D969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8B0F4FC-E997-40EC-BC52-5307D317D969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8B0F4FC-E997-40EC-BC52-5307D317D969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E9237E-CC5C-413B-8690-69610568E239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E9237E-CC5C-413B-8690-69610568E239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E9237E-CC5C-413B-8690-69610568E239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E9237E-CC5C-413B-8690-69610568E239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EAC2E31-4F94-4E91-A155-84497662CD4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EAC2E31-4F94-4E91-A155-84497662CD4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EAC2E31-4F94-4E91-A155-84497662CD4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EAC2E31-4F94-4E91-A155-84497662CD4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
