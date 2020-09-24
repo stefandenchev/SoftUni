@@ -21,11 +21,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08.BalancedParenthesis100",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.MaximumAndMinimumElement", "03.MaximumAndMinimumElement\03.MaximumAndMinimumElement.csproj", "{EFD2A4E0-31A3-47C4-88AE-14E51515BE41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.SimpleTextEditor", "09.SimpleTextEditor\09.SimpleTextEditor.csproj", "{C7850BFF-9BCB-424F-8581-20FD9DABEDF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "09.SimpleTextEditor", "09.SimpleTextEditor\09.SimpleTextEditor.csproj", "{C7850BFF-9BCB-424F-8581-20FD9DABEDF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.Crossroads", "10.Crossroads\10.Crossroads.csproj", "{F84F2651-113B-45F8-950B-EF680B646B35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10.Crossroads", "10.Crossroads\10.Crossroads.csproj", "{F84F2651-113B-45F8-950B-EF680B646B35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10.Crossroads100", "10.Crossroads100\10.Crossroads100.csproj", "{11B96B6C-D89E-4B46-9DA5-6339B04ED5EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10.Crossroads100", "10.Crossroads100\10.Crossroads100.csproj", "{11B96B6C-D89E-4B46-9DA5-6339B04ED5EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11.KeyRevolver", "11.KeyRevolver\11.KeyRevolver.csproj", "{81543369-F195-4334-BD6F-ABEF48784F89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12.CupsAndBottles", "12.CupsAndBottles\12.CupsAndBottles.csproj", "{782A79C5-4F67-47C4-A1B8-30DEE4146B6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,14 @@ Global
 		{11B96B6C-D89E-4B46-9DA5-6339B04ED5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11B96B6C-D89E-4B46-9DA5-6339B04ED5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11B96B6C-D89E-4B46-9DA5-6339B04ED5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81543369-F195-4334-BD6F-ABEF48784F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81543369-F195-4334-BD6F-ABEF48784F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81543369-F195-4334-BD6F-ABEF48784F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81543369-F195-4334-BD6F-ABEF48784F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{782A79C5-4F67-47C4-A1B8-30DEE4146B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{782A79C5-4F67-47C4-A1B8-30DEE4146B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{782A79C5-4F67-47C4-A1B8-30DEE4146B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{782A79C5-4F67-47C4-A1B8-30DEE4146B6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
