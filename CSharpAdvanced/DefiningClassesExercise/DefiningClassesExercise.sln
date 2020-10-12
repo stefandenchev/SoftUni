@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefiningClasses", "DefiningClasses\DefiningClasses.csproj", "{BCA706B4-42BA-4031-8514-26A0FDD45216}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefiningClasses", "DefiningClasses\DefiningClasses.csproj", "{BCA706B4-42BA-4031-8514-26A0FDD45216}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateModifier", "DateModifier\DateModifier.csproj", "{3C12EE36-F0F2-4485-90CC-87185FF9313D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateModifier", "DateModifier\DateModifier.csproj", "{3C12EE36-F0F2-4485-90CC-87185FF9313D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedRacing", "SpeedRacing\SpeedRacing.csproj", "{4E04F2D1-2B2C-47A1-B8FB-4971ECA03F45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpeedRacing", "SpeedRacing\SpeedRacing.csproj", "{4E04F2D1-2B2C-47A1-B8FB-4971ECA03F45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RawData", "RawData\RawData.csproj", "{5F6C67B0-35D4-421F-B31A-26549D5A6E43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RawData", "RawData\RawData.csproj", "{5F6C67B0-35D4-421F-B31A-26549D5A6E43}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarSalesman", "CarSalesman\CarSalesman.csproj", "{7A3E1911-2A1B-412B-8534-817E0D163552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokemonTrainer", "PokemonTrainer\PokemonTrainer.csproj", "{ACD3C9B6-BA8A-4655-984D-0D814F1CFC52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{5F6C67B0-35D4-421F-B31A-26549D5A6E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F6C67B0-35D4-421F-B31A-26549D5A6E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F6C67B0-35D4-421F-B31A-26549D5A6E43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A3E1911-2A1B-412B-8534-817E0D163552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3E1911-2A1B-412B-8534-817E0D163552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3E1911-2A1B-412B-8534-817E0D163552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3E1911-2A1B-412B-8534-817E0D163552}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACD3C9B6-BA8A-4655-984D-0D814F1CFC52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACD3C9B6-BA8A-4655-984D-0D814F1CFC52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACD3C9B6-BA8A-4655-984D-0D814F1CFC52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACD3C9B6-BA8A-4655-984D-0D814F1CFC52}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
