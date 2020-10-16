@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace Parking
@@ -8,6 +9,7 @@ namespace Parking
     public class Parking
     {
         public List<Car> data;
+        private int capacity;
         public Parking(string type, int capacity)
         {
             Type = type;
@@ -26,9 +28,8 @@ namespace Parking
 
         public bool Remove(string manufacturer, string model)
         {
-            Car manufacturerToRemove = data.FirstOrDefault(x => x.Manufacturer == manufacturer);
-            Car modelToRemove = data.FirstOrDefault(x => x.Model == model);
-            return data.Remove(modelToRemove);
+            Car manufacturerToRemove = data.FirstOrDefault(x => x.Manufacturer == manufacturer && x.Model == model);
+            return data.Remove(manufacturerToRemove);
         }
 
         public Car GetLatestCar()
@@ -46,8 +47,7 @@ namespace Parking
 
         public Car GetCar(string manufacturer, string model)
         {
-            Car manufacturerToGet = data.FirstOrDefault(x => x.Manufacturer == manufacturer);
-            Car modelToGet = data.FirstOrDefault(x => x.Manufacturer == model);
+            Car manufacturerToGet = data.FirstOrDefault(x => x.Manufacturer == manufacturer && x.Model == model);
             return manufacturerToGet;
         }
 

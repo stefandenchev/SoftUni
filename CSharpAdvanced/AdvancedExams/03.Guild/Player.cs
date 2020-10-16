@@ -25,7 +25,7 @@ namespace Guild
             StringBuilder sb = new StringBuilder();
             sb.AppendLine($"Player {Name}: {Class}");
             sb.AppendLine($"Rank: { Rank}");
-            sb.AppendLine($"Description: {Description}");
+            sb.Append($"Description: {Description}");
             return sb.ToString();
         }
     }

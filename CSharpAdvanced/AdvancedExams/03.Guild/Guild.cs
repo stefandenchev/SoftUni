@@ -49,7 +49,7 @@ namespace Guild
         {
             List<Player> kicked = new List<Player>();
 
-            foreach (var player in roster)
+            foreach (var player in roster.ToList())
             {
                 if (player.Class == Class)
                 {
@@ -66,7 +66,7 @@ namespace Guild
             sb.AppendLine($"Players in the guild: {Name}");
             foreach (var player in roster)
             {
-                sb.Append(player.ToString());
+                sb.AppendLine(player.ToString());
             }
             return sb.ToString().TrimEnd();
         }
