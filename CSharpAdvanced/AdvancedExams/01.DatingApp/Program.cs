@@ -14,92 +14,77 @@ namespace _01.DatingApp
             Stack<int> males = new Stack<int>(maleNums);
             Queue<int> females = new Queue<int>(femaleNums);
 
-            int matches = 0;
+            int counter = 0;
 
             while (males.Count > 0 && females.Count > 0)
             {
-                int currentMale = males.Peek();
-                int currentFemale = females.Peek();
+                int male = males.Peek();
+                int female = females.Peek();
 
-                if (currentMale <= 0)
+                if (male > 0 && female > 0)
                 {
-                    while (currentMale <= 0)
+                    if (male % 25 == 0 || female % 25 == 0)
+                    {
+
+                        if (male % 25 == 0)
+                        {
+                            if (males.Count > 1)
+                            {
+                                males.Pop();
+                                males.Pop();
+                            }
+                            else
+                            {
+                                males.Pop();
+                            }
+                        }
+
+                        if (female % 25 == 0)
+                        {
+                            if (females.Count > 1)
+                            {
+                                females.Dequeue();
+                                females.Dequeue();
+                            }
+                            else
+                            {
+                                females.Dequeue();
+                            }
+                        }
+                        continue;
+                    }
+                }
+                if (male <= 0 || female <= 0)
+                {
+
+                    if (male <= 0)
                     {
                         males.Pop();
-                        currentMale = males.Peek();
                     }
-                }
-
-                if (currentFemale <= 0)
-                {
-                    while (currentMale <= 0)
-                    {
-                        females.Dequeue();
-                        currentFemale = females.Peek();
-                    }
-                    
-                }
-
-                if (currentMale % 25 == 0)
-                {
-                    males.Pop();
-                    if (males.Count > 0)
-                    {
-                        males.Pop();
-                    }
-                    else
-                    {
-                        break;
-                    }
-                    if (males.Count > 0)
-                    {
-                        currentMale = males.Peek();
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                if (currentFemale % 25 == 0)
-                {
-                    females.Dequeue();
-                    if (females.Count > 0)
+                    if (female <= 0)
                     {
                         females.Dequeue();
                     }
-                    else
-                    {
-                        break;
-                    }
-                    if (females.Count > 0)
-                    {
-                        currentFemale = females.Peek();
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    continue;
                 }
 
-                if (currentMale == currentFemale)
+                if (male == female)
                 {
-                    matches++;
+                    counter++;
                     males.Pop();
                     females.Dequeue();
                 }
                 else
                 {
-
                     females.Dequeue();
-                    currentMale -= 2;
+                    male -= 2;
                     males.Pop();
-                    males.Push(currentMale);
+                    males.Push(male);
                 }
 
             }
 
-            Console.WriteLine($"Matches: {matches}");
+            Console.WriteLine($"Matches: {counter}");
             if (males.Count > 0)
             {
                 Console.WriteLine($"Males left: {String.Join(", ", males)}");
