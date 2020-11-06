@@ -24,7 +24,7 @@ namespace Animals
                 return this.name;
             }
 
-            set
+            private set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
@@ -40,10 +40,11 @@ namespace Animals
             {
                 return this.age;
             }
-            set
+
+            private set
             {
 
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentException("Invalid input!");
                 }
@@ -52,14 +53,14 @@ namespace Animals
             }
         }
 
-        public string Gender
+        public virtual string Gender
         {
             get
             {
                 return this.gender;
             }
 
-            set
+            protected set
             {
                 if (value != "Male" && value != "Female")
                 {
@@ -75,9 +76,10 @@ namespace Animals
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(this.GetType().Name);
-            sb.AppendLine($"{this.name} {this.age} {this.gender}");
-            sb.AppendLine(ProduceSound());
+            sb
+                .AppendLine($"{this.GetType().Name}")
+                .AppendLine($"{Name} {Age} {Gender}")
+                .AppendLine($"{ProduceSound()}");
 
             return sb.ToString().TrimEnd();
         }
