@@ -12,11 +12,11 @@ namespace _07.MilitaryElite.Models
             Salary = salary;
         }
 
-        public decimal Salary { get; }
+        public decimal Salary { get; private set; }
 
         public override string ToString()
         {
-            return $"{base.ToString()} Salary: {Math.Round(Salary, 2):f2}";
+            return $"{base.ToString()} Salary: {this.Salary:f2}";
         }
     }
 }

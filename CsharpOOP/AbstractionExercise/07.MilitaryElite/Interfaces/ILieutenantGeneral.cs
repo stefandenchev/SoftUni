@@ -4,8 +4,10 @@ using System.Text;
 
 namespace _07.MilitaryElite
 {
-    public interface ILieutenantGeneral
+    public interface ILieutenantGeneral : IPrivate
     {
-        public ICollection<IPrivate> Privates { get; }
+        public IReadOnlyCollection<ISoldier> Privates { get; }
+
+        void AddPrivate(ISoldier @private);
     }
 }

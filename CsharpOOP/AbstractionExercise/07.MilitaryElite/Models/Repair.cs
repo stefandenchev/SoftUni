@@ -11,9 +11,9 @@ namespace _07.MilitaryElite.Models
             PartName = partName;
             HoursWorked = hoursWorked;
         }
-        public string PartName { get; }
+        public string PartName { get; private set; }
 
-        public int HoursWorked { get; }
+        public int HoursWorked { get; private set; }
 
         public override string ToString()
         {

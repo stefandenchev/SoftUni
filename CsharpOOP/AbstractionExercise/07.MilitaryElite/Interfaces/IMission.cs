@@ -10,7 +10,7 @@ namespace _07.MilitaryElite
         public string CodeName { get; }
         public MissionStateEnum State { get;  }
 
-        void CompleteMission(string codeName);
+        void CompleteMission();
 
     }
 }

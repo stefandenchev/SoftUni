@@ -5,7 +5,7 @@ using _07.MilitaryElite.Enumerations;
 
 namespace _07.MilitaryElite
 {
-    public interface ISpecialisedSoldier 
+    public interface ISpecialisedSoldier : IPrivate
     {
         SoldierCorpEnum SoldierCorpEnum { get; }
     }

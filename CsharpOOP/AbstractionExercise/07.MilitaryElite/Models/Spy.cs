@@ -13,7 +13,7 @@ namespace _07.MilitaryElite.Models
             CodeNumber = codeNumber;
         }
 
-        public int CodeNumber { get; }
+        public int CodeNumber { get; private set; }
 
         public override string ToString()
         {

@@ -4,8 +4,10 @@ using System.Text;
 
 namespace _07.MilitaryElite
 {
-    public interface IEngineer
+    public interface IEngineer : ISpecialisedSoldier
     {
-        ICollection<IRepair> Repairs { get; }
+        IReadOnlyCollection<IRepair> Repairs { get; }
+
+        void AddRepair(IRepair repair);
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace _07.MilitaryElite
 {
-    public interface IPrivate
+    public interface IPrivate : ISoldier
     {
         public decimal Salary { get; }
     }
