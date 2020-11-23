@@ -14,10 +14,13 @@ namespace ValidationAttributes
 
             foreach (PropertyInfo property in properties)
             {
-               IEnumerable<MyValidationAttribute> propCustomAttributes = property
+                IEnumerable<MyValidationAttribute> propCustomAttributes = property
+                     .GetCustomAttributes<MyValidationAttribute>();
+
+                /*IEnumerable<MyValidationAttribute> propCustomAttributes = property
                     .GetCustomAttributes()
                     .Where(x => x is MyValidationAttribute)
-                    .Cast<MyValidationAttribute>();
+                    .Cast<MyValidationAttribute>();*/
 
                 foreach (MyValidationAttribute attribute in propCustomAttributes)
                 {
