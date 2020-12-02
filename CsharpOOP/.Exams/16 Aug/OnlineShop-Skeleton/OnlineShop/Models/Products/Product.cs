@@ -80,7 +80,7 @@ namespace OnlineShop.Models.Products
             {
                 return this.price;
             }
-            set
+            private set
             {
                 if (value <= 0)
                 {
@@ -97,7 +97,7 @@ namespace OnlineShop.Models.Products
             {
                 return this.overallPerformance;
             }
-            set
+            private set
             {
                 if (value <= 0)
                 {
