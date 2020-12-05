@@ -30,7 +30,7 @@ namespace EasterRaces.Models.Races.Entities
             {
                 return this.name;
             }
-            set
+            private set
             {
                 if (String.IsNullOrEmpty(value) || value.Length < MIN_LENGTH)
                 {
@@ -48,7 +48,7 @@ namespace EasterRaces.Models.Races.Entities
             {
                 return this.laps;
             }
-            set
+            private set
             {
                 if (value < MIN_LAPS)
                 {

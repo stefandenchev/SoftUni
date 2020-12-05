@@ -26,7 +26,7 @@ namespace EasterRaces.Models.Drivers.Entities
             {
                 return this.name;
             }
-            set
+            private set
             {
                 if (String.IsNullOrWhiteSpace(value) || value.Length < 5)
                 {
@@ -38,9 +38,9 @@ namespace EasterRaces.Models.Drivers.Entities
             }
         }
 
-        public ICar Car { get; set; }
+        public ICar Car { get; private set; }
 
-        public int NumberOfWins { get; set; }
+        public int NumberOfWins { get; private set; }
 
         public bool CanParticipate => this.Car != null;
        

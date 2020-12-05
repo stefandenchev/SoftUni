@@ -55,7 +55,7 @@ namespace EasterRaces.Models.Cars.Entities
             }
         }
 
-        public double CubicCentimeters { get; private set; }
+        public double CubicCentimeters { get; }
 
         public int MinHorsePower { get; }
 
