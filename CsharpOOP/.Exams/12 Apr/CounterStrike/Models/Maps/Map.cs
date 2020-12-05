@@ -10,53 +10,72 @@ namespace CounterStrike.Models.Maps
 {
     public class Map : IMap
     {
+        private List<IPlayer> terrorists;
+        private List<IPlayer> counterTerrorists;
+
+        public Map()
+        {
+            terrorists = new List<IPlayer>();
+            counterTerrorists = new List<IPlayer>();
+        }
+
         public string Start(ICollection<IPlayer> players)
         {
-            var terrorists = players.Where(x => x is Terrorist);
-            var counterTerrorists = players.Where(x => x is CounterTerrorist);
+            SeparateTeams(players);
 
             while (true)
             {
-                if (terrorists.Any(x => x.IsAlive) == false)
-                {
-                    return "Counter Terrorist wins!";
-                }
+                AttackTeam(terrorists, counterTerrorists);             
+                AttackTeam(counterTerrorists, terrorists);
 
-                if (counterTerrorists.Any(x => x.IsAlive) == false)
+                if (!IsTeamAlive(counterTerrorists))
                 {
                     return "Terrorist wins!";
                 }
-
-
-                foreach (var terrorist in terrorists)
+                if (!IsTeamAlive(terrorists))
                 {
-                    if (terrorist.IsAlive)
-                    {
-                        foreach (var counterTerrorist in counterTerrorists)
-                        {
-                            if (counterTerrorist.IsAlive)
-                            {
-                                counterTerrorist.TakeDamage(terrorist.Gun.Fire());
-                            }
-                        }
-                    }
+                    return "Counter Terrorist wins!";
                 }
+            }
+        }
 
-                foreach (var counterTerrorist in counterTerrorists)
+        private bool IsTeamAlive(List<IPlayer> players)
+        {
+            return players.Any(p => p.IsAlive);
+        }
+
+        private void SeparateTeams(ICollection<IPlayer> players)
+        {
+            foreach (var player in players)
+            {
+                if (player is CounterTerrorist)
                 {
-                    if (counterTerrorist.IsAlive)
+                    counterTerrorists.Add(player);
+                }
+                else if (player is Terrorist)
+                {
+                    terrorists.Add(player);
+                }
+            }
+        }
+
+        private void AttackTeam(List<IPlayer> attackingTeam,
+            List<IPlayer> defendingTeam)
+        {
+            foreach (var attacker in attackingTeam)
+            {
+                //if (!attacker.IsAlive) continue;
+                {
+                    foreach (var defender in defendingTeam)
                     {
-                        foreach (var terrorist in terrorists)
+                        if (defender.IsAlive)
                         {
-                            if (terrorist.IsAlive)
-                            {
-                                terrorist.TakeDamage(counterTerrorist.Gun.Fire());
-                            }
+                            defender.TakeDamage(attacker.Gun.Fire());
                         }
                     }
                 }
             }
-
         }
+
     }
 }

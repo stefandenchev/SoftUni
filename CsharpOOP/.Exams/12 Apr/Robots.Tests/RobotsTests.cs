@@ -11,7 +11,7 @@ namespace Robots.Tests
         private RobotManager robotManager;
 
         [SetUp]
-        public void TestInit()
+        public void Setup()
         {
             this.robot = new Robot("Stefan", 100);
             this.robotManager = new RobotManager(10);
@@ -34,12 +34,10 @@ namespace Robots.Tests
 
         [Test]
         [TestCase(-12)]
-        public void CapacityShouldThrownExceptionWithNegativeValue(int capacity)
+        public void CapacityShouldThrowExceptionWithNegativeValue(int capacity)
         {
             Assert.Throws<ArgumentException>(() =>
-            {
-                this.robotManager = new RobotManager(capacity);
-            });
+                this.robotManager = new RobotManager(capacity));
         }
 
         [Test]

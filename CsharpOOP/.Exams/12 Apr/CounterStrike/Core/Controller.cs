@@ -9,6 +9,7 @@ using CounterStrike.Repositories;
 using CounterStrike.Utilities.Messages;
 using System;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace CounterStrike.Core
@@ -27,7 +28,7 @@ namespace CounterStrike.Core
         }
         public string AddGun(string type, string name, int bulletsCount)
         {
-            IGun gun = null;
+            IGun gun;
             if (type == "Pistol")
             {
                 gun = new Pistol(name, bulletsCount);
@@ -40,6 +41,19 @@ namespace CounterStrike.Core
             {
                 throw new ArgumentException(ExceptionMessages.InvalidGunType);
             }
+
+            //REFLECTION: 2 errors tho
+
+            /*Type gunType = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .FirstOrDefault(t => t.Name == type);
+            if (type == null)
+            {
+                throw new ArgumentException(ExceptionMessages.InvalidGunType);
+            }
+            var constructorParams = new object[2] { name, bulletsCount };
+
+            gun = (IGun)Activator.CreateInstance(gunType, constructorParams);*/
 
             this.guns.Add(gun);
             return String.Format(OutputMessages.SuccessfullyAddedGun, name);
