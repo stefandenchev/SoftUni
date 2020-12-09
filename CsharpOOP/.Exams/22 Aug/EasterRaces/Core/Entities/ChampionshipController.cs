@@ -8,7 +8,6 @@ using EasterRaces.Models.Races.Entities;
 using EasterRaces.Repositories.Entities;
 using EasterRaces.Utilities.Messages;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -55,14 +54,15 @@ namespace EasterRaces.Core.Entities
                 car = new SportsCar(model, horsePower);
             }
 
-            if (this.carRepository.Models.Any(x => x.Model == model && x.HorsePower == horsePower))
+            if (this.carRepository.Models.Any(x => x.Model == model))
             {
                 throw new ArgumentException(String.Format(
                     ExceptionMessages.CarExists, model));
             }
 
             this.carRepository.Add(car);
-            return String.Format(OutputMessages.CarCreated, car.GetType().Name, model);
+            return String.Format(OutputMessages.CarCreated,
+                car.GetType().Name, model);
         }
 
         public string CreateRace(string name, int laps)
@@ -99,19 +99,20 @@ namespace EasterRaces.Core.Entities
 
         public string AddDriverToRace(string raceName, string driverName)
         {
-            IDriver driver = this.driverRepository.GetByName(driverName);
             IRace race = this.raceRepository.GetByName(raceName);
+            IDriver driver = this.driverRepository.GetByName(driverName);
 
-            if (driver == null)
-            {
-                throw new InvalidOperationException(String.Format(
-                    ExceptionMessages.DriverNotFound, driverName));
-            }
             if (race == null)
             {
                 throw new InvalidOperationException(String.Format(
                     ExceptionMessages.RaceNotFound, raceName));
             }
+
+            if (driver == null)
+            {
+                throw new InvalidOperationException(String.Format(
+                    ExceptionMessages.DriverNotFound, driverName));
+            }    
 
             race.AddDriver(driver);
             return String.Format(OutputMessages.DriverAdded, driverName, raceName);
@@ -141,6 +142,7 @@ namespace EasterRaces.Core.Entities
                 .AppendLine(String.Format(OutputMessages.DriverSecondPosition, participants[1].Name, raceName))
                 .AppendLine(String.Format(OutputMessages.DriverThirdPosition, participants[2].Name, raceName));
 
+            this.raceRepository.Remove(race);
             return sb.ToString().TrimEnd();
         }
     }

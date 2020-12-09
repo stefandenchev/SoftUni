@@ -69,7 +69,7 @@ namespace EasterRaces.Models.Races.Entities
             {
                 throw new ArgumentNullException(ExceptionMessages.DriverInvalid);
             }
-            if (driver.CanParticipate == false)
+            if (!driver.CanParticipate)
             {
                 throw new ArgumentException(string.Format(ExceptionMessages.DriverNotParticipate, driver.Name));
             }

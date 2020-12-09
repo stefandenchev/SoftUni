@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.RecursiveFactorial", "04
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.RecursiveDrawing", "02.RecursiveDrawing\02.RecursiveDrawing.csproj", "{5DE2617C-8E5D-40E5-BFCD-4521AF6E1DFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.Generating01Vectors", "03.Generating01Vectors\03.Generating01Vectors.csproj", "{BCA07344-2779-4D2E-87EC-8B22801D7B92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.Generating01Vectors", "03.Generating01Vectors\03.Generating01Vectors.csproj", "{BCA07344-2779-4D2E-87EC-8B22801D7B92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.PathsInLabyrinth", "05.PathsInLabyrinth\05.PathsInLabyrinth.csproj", "{7D4ED410-B14A-4EB1-909A-72481E6CA699}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.PathsInLabyrinth", "05.PathsInLabyrinth\05.PathsInLabyrinth.csproj", "{7D4ED410-B14A-4EB1-909A-72481E6CA699}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06.8QueensPuzzle", "06.8QueensPuzzle\06.8QueensPuzzle.csproj", "{E23EAAB9-3E0F-4795-9B56-667949DC8771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.RecursiveFibonacci", "07.RecursiveFibonacci\07.RecursiveFibonacci.csproj", "{25BACDBB-ED8D-4584-83F8-85C22011CB99}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{7D4ED410-B14A-4EB1-909A-72481E6CA699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D4ED410-B14A-4EB1-909A-72481E6CA699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D4ED410-B14A-4EB1-909A-72481E6CA699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E23EAAB9-3E0F-4795-9B56-667949DC8771}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E23EAAB9-3E0F-4795-9B56-667949DC8771}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E23EAAB9-3E0F-4795-9B56-667949DC8771}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E23EAAB9-3E0F-4795-9B56-667949DC8771}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25BACDBB-ED8D-4584-83F8-85C22011CB99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25BACDBB-ED8D-4584-83F8-85C22011CB99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25BACDBB-ED8D-4584-83F8-85C22011CB99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25BACDBB-ED8D-4584-83F8-85C22011CB99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
