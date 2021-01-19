@@ -4,7 +4,7 @@ CREATE TABLE Persons
 	PersonID INT IDENTITY PRIMARY KEY,
 	FirstName NVARCHAR(30) NOT NULL,
 	Salary DECIMAL(10,2) NOT NULL,
-	PassportID INT NOT NULL
+	PassportID INT UNIQUE NOT NULL
 )
 
 CREATE TABLE Passports
@@ -208,3 +208,10 @@ ADD FOREIGN KEY (MajorID) REFERENCES Majors(MajorID)
 
 ALTER TABLE Payments
 ADD FOREIGN KEY (StudentID) REFERENCES Students(StudentID)
+
+--09. *Peaks in Rila
+SELECT m.MountainRange, p.PeakName, p.Elevation
+FROM Peaks p
+JOIN Mountains m ON p.MountainId = m.Id
+WHERE MountainRange = 'Rila'
+ORDER BY p.Elevation DESC
