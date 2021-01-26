@@ -29,18 +29,18 @@ ORDER BY Name
 --06. Find Towns Starting With
 SELECT *
 FROM Towns
-WHERE Name LIKE 'M%'
-   OR Name LIKE 'K%'
-   OR Name LIKE 'B%'
-   OR Name LIKE 'E%'
+WHERE Name LIKE '[MKBE]%'
 ORDER BY Name
+
+--WHERE Name LIKE 'M%'
+--   OR Name LIKE 'K%'
+--   OR Name LIKE 'B%'
+--   OR Name LIKE 'E%'
 
 --07. Find Towns Not Starting With
 SELECT *
 FROM Towns
-WHERE Name NOT LIKE 'R%'
-   AND Name NOT LIKE 'B%'
-   AND Name NOT LIKE 'D%'
+WHERE Name NOT LIKE '[RBD]%'
 ORDER BY Name
 
 --08. Create View Employees Hired After
@@ -59,13 +59,12 @@ SELECT EmployeeID, FirstName, LastName, Salary,
 DENSE_RANK() OVER (PARTITION BY Salary ORDER BY EmployeeID) AS [Rank]
 FROM Employees
 WHERE Salary BETWEEN 10000 AND 50000
-ORDER BY Salary DESC
+ORDER BY Salary DESC 
 
 --11. Find All Employees with Rank 2 (not included in final score)
 SELECT * FROM
-(
-	SELECT EmployeeID, FirstName, LastName, Salary,
-	DENSE_RANK() OVER (PARTITION BY Salary ORDER BY EmployeeID) AS [Rank]
+(   SELECT EmployeeID, FirstName, LastName, Salary,
+		DENSE_RANK() OVER (PARTITION BY Salary ORDER BY EmployeeID) AS [Rank]
 	FROM Employees
 	WHERE Salary BETWEEN 10000 AND 50000
 ) AS [T]
@@ -80,12 +79,19 @@ WHERE CountryName LIKE '%a%a%a%'
 ORDER BY IsoCode
 
 --13. Mix of Peak and River Names
-SELECT p.PeakName,
+/*SELECT p.PeakName,
 	   r.RiverName,
 	   LOWER(STUFF(p.PeakName, LEN(p.PeakName), LEN(r.RiverName), r.RiverName)) AS Mix
 FROM Peaks p
 JOIN Rivers r ON p.Id = p.Id
 WHERE RIGHT(p.PeakName, 1) = LEFT(r.RiverName, 1)
+ORDER BY Mix
+*/
+SELECT PeakName,
+	   RiverName,
+	   LOWER(LEFT(PeakName, LEN(PeakName) - 1) +RiverName) AS Mix
+FROM Peaks, Rivers
+WHERE RIGHT(PeakName, 1) = LEFT(RiverName, 1)
 ORDER BY Mix
 
 -- Diablo DB
@@ -96,7 +102,8 @@ WHERE YEAR(Start) IN (2011, 2012)
 ORDER BY Start, Name
 
 --15. User Email Providers
-SELECT Username, RIGHT(Email, LEN(Email) - CHARINDEX('@', Email)) AS [Email Provider]
+SELECT Username,
+	   RIGHT(Email, LEN(Email) - CHARINDEX('@', Email)) AS [Email Provider]
 FROM Users
 ORDER BY [Email Provider], Username
 
