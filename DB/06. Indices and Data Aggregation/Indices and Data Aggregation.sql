@@ -43,28 +43,20 @@ GROUP BY DepositGroup, MagicWandCreator
 ORDER BY MagicWandCreator, DepositGroup
 
 --09. Age Groups
+SELECT Result.AgeGroup, COUNT(Result.AgeGroup)
+FROM (
 SELECT 
 	CASE
-	  WHEN w.Age BETWEEN 0 AND 10 THEN '[0-10]'
-	  WHEN w.Age BETWEEN 11 AND 20 THEN '[11-20]'
-	  WHEN w.Age BETWEEN 21 AND 30 THEN '[21-30]'
-	  WHEN w.Age BETWEEN 31 AND 40 THEN '[31-40]'
-	  WHEN w.Age BETWEEN 41 AND 50 THEN '[41-50]'
-	  WHEN w.Age BETWEEN 51 AND 60 THEN '[51-60]'
-	  WHEN w.Age >= 61 THEN '[61+]'
-	END AS [AgeGroup],
-COUNT(*) AS [WizardCount]
-	FROM WizzardDeposits AS w
-GROUP BY
-	CASE
-	  WHEN w.Age BETWEEN 0 AND 10 THEN '[0-10]'
-	  WHEN w.Age BETWEEN 11 AND 20 THEN '[11-20]'
-	  WHEN w.Age BETWEEN 21 AND 30 THEN '[21-30]'
-	  WHEN w.Age BETWEEN 31 AND 40 THEN '[31-40]'
-	  WHEN w.Age BETWEEN 41 AND 50 THEN '[41-50]'
-	  WHEN w.Age BETWEEN 51 AND 60 THEN '[51-60]'
-	  WHEN w.Age >= 61 THEN '[61+]'
-	END
+	  WHEN Age BETWEEN 0 AND 10 THEN '[0-10]'
+	  WHEN Age BETWEEN 11 AND 20 THEN '[11-20]'
+	  WHEN Age BETWEEN 21 AND 30 THEN '[21-30]'
+	  WHEN Age BETWEEN 31 AND 40 THEN '[31-40]'
+	  WHEN Age BETWEEN 41 AND 50 THEN '[41-50]'
+	  WHEN Age BETWEEN 51 AND 60 THEN '[51-60]'
+	  WHEN Age >= 61 THEN '[61+]'
+	END AS AgeGroup
+	FROM WizzardDeposits) AS Result
+GROUP BY Result.AgeGroup
 
 --10. First Letter
 SELECT DISTINCT LEFT(FirstName, 1) AS FirstLetter
@@ -76,7 +68,7 @@ GROUP BY FirstName
 SELECT *
 FROM WizzardDeposits
 
-SELECT DepositGroup, IsDepositExpired, AVG(DepositInterest)
+SELECT DepositGroup, IsDepositExpired, AVG(DepositInterest) AS AverageInterest
 FROM WizzardDeposits
 WHERE DepositStartDate > '1985-01-01'
 GROUP BY DepositGroup, IsDepositExpired
@@ -87,13 +79,14 @@ SELECT *
 FROM WizzardDeposits
 
 SELECT
-	FirstName AS [Host Wizard],
-	DepositAmount AS [Host Wizard Deposit],
-	LEAD(FirstName, 1, 0)
-	OVER(PARTITION BY FirstName ORDER BY FirstName) AS [Guest Wizard]
-	--LEAD(DepositAmount) AS [Guest Wizard Deposit],
-	--LEAD(DepositAmount) - DepositAmount AS [Difference]
-FROM WizzardDeposits
+	SUM(Host.DepositAmount - Guest.DepositAmount) AS [Difference]
+FROM WizzardDeposits AS Host
+JOIN WizzardDeposits AS Guest ON Host.Id = Guest.Id - 1
+
+--same with LEAD
+SELECT SUM(k.[Difference]) AS [Difference]
+	FROM (SELECT DepositAmount - LEAD(DepositAmount, 1) OVER (ORDER BY Id) AS [Difference]
+FROM WizzardDeposits) AS k
 
 --13. Departments Total Salaries
 SELECT
@@ -146,24 +139,15 @@ FROM Employees
 WHERE ManagerID IS NULL
 
 --18*. 3rd Highest Salary
-SELECT DepartmentID, Salary
-FROM Employees
-ORDER BY DepartmentID, Salary DESC
-
-SELECT DepartmentId, Salary
-FROM(
-SELECT DepartmentID, Salary
-FROM Employees) as a
-ORDER BY DepartmentID, Salary DESC
-
-SELECT TOP(3) DepartmentId, Salary FROM
-(SELECT DepartmentId, Salary 
-FROM Employees 
-GROUP BY DepartmentId, Salary
-) AS K
-ORDER BY Salary DESC
+SELECT DISTINCT k.DepartmentID, k.Salary AS ThirdHighestSalary
+FROM (SELECT DepartmentID, Salary, DENSE_RANK() OVER(PARTITION BY DepartmentID ORDER BY SALARY DESC) AS [Ranked]
+FROM Employees) AS k
+WHERE k.Ranked = 3
 
 --*19. Salary Challenge
-SELECT FirstName, LastName, DepartmentID
-FROM Employees
-WHERE Salary > AVG(Salary)
+SELECT TOP(10) FirstName, LastName, DepartmentID
+FROM Employees AS emp
+WHERE Salary > (SELECT AVG(Salary)
+			   FROM Employees
+			   WHERE DepartmentID = emp.DepartmentID)
+
