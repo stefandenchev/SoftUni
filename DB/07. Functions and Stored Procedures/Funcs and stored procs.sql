@@ -138,8 +138,32 @@ END
 SELECT dbo.ufn_CalculateFutureValue(1000, 0.1, 5)
 
 --12. Calculating Interest
+CREATE PROCEDURE usp_CalculateFutureValueForAccount (@accountId INT, @interestRate FLOAT)
+AS
+SELECT a.Id,
+	   ah.FirstName,
+	   ah.LastName,
+	   a.Balance,
+	   dbo.ufn_CalculateFutureValue(a.Balance, @interestRate, 5) AS [Balance in 5 years]
+	FROM AccountHolders ah
+	JOIN Accounts a ON a.AccountHolderId = ah.Id
+	WHERE a.Id = @accountId
 
+EXEC usp_CalculateFutureValueForAccount 1, 0.1
 
+--13. *Cash in User Games Odd Rows
+CREATE FUNCTION ufn_CashInUsersGames (@gameName VARCHAR(100))
+RETURNS TABLE
+AS
+	RETURN (SELECT SUM(k.TotalCash) AS TotalCash
+FROM (SELECT Cash AS TotalCash,
+		ROW_NUMBER() OVER (ORDER BY Cash DESC) AS RowNumber
+	FROM Games g
+	JOIN UsersGames ug ON ug.GameId = g.Id
+	WHERE Name = @gameName) AS k
+WHERE k.RowNumber % 2 = 1)
+
+SELECT * FROM ufn_CashInUsersGames('Love in a mist')
 
 --21. Employees with Three Projects
 CREATE PROC usp_AssignProject(@EmployeeId INT, @ProjectId INT)
