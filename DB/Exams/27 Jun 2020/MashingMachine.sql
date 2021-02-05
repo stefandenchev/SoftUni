@@ -27,7 +27,7 @@ CREATE TABLE Jobs
 (
 	JobId INT IDENTITY PRIMARY KEY,
 	ModelId INT REFERENCES Models(ModelId) NOT NULL,
-	[Status] VARCHAR(11) CHECK ([Status] in ('Pending','In Progress', 'Finished')) DEFAULT 'Pending' NOT NULL,
+	[Status] VARCHAR(11) DEFAULT 'Pending' CHECK ([Status] in ('Pending','In Progress', 'Finished')) NOT NULL,
 	ClientId INT REFERENCES Clients(ClientId) NOT NULL,
 	MechanicId INT REFERENCES Mechanics(MechanicId),
 	IssueDate DATE NOT NULL,
@@ -62,15 +62,15 @@ CREATE TABLE OrderParts
 (
 	OrderId INT REFERENCES Orders(OrderId),
 	PartId INT REFERENCES Parts(PartId), 
-	Quantity INT CHECK (Quantity > 0) DEFAULT 1 NOT NULL,
+	Quantity INT DEFAULT 1 CHECK (Quantity > 0) NOT NULL,
 	PRIMARY KEY(OrderId, PartId)
 )
 
 CREATE TABLE PartsNeeded
 (
-	JobId INT REFERENCES Jobs(JobId),
-	PartId INT REFERENCES Parts(PartId), 
-	Quantity INT CHECK (Quantity > 0) DEFAULT 1 NOT NULL,
+	JobId INT REFERENCES Jobs(JobId) NOT NULL,
+	PartId INT REFERENCES Parts(PartId) NOT NULL, 
+	Quantity INT DEFAULT 1 CHECK (Quantity > 0) NOT NULL,
 	PRIMARY KEY(JobId, PartId)
 )
 
@@ -127,39 +127,152 @@ SELECT FirstName + ' ' + LastName AS Mechanic,
 	   AVG(DATEDIFF(DAY, IssueDate, FinishDate)) AS [Average Days]
 FROM Mechanics m
 JOIN Jobs j ON m.MechanicId = j.MechanicId
-GROUP BY FirstName, LastName, m.MechanicId
+GROUP BY m.MechanicId, FirstName, LastName
 ORDER BY m.MechanicId
 
 --08. Available Mechanics??
-SELECT FirstName + ' ' + LastName AS Available
-FROM Mechanics m
-LEFT JOIN Jobs j ON m.MechanicId = j.MechanicId
-WHERE [Status] = 'Finished'
-GROUP BY j.Status, FirstName, LastName, m.MechanicId
-ORDER BY m.MechanicId
+SELECT CONCAT(FirstName,' ',LastName) AS Available
+       FROM Mechanics m
+  LEFT JOIN Jobs j ON j.MechanicId = m.MechanicId
+     WHERE  j.JobId IS NULL 
+            OR 'Finished' = ALL(SELECT j.[Status]
+                                FROM Jobs j  
+                                WHERE j.MechanicId = m.MechanicId)    
+   GROUP BY FirstName,LastName,m.MechanicId
+   ORDER BY m.MechanicId
 
---09. Past Expenses??? ???Invalid object name 'PartsNeeded'.???
-SELECT j.JobId, SUM(Price) AS Total
+--09. Past Expenses
+SELECT j.JobId, ISNULL(SUM(p.Price * op.Quantity), 0) AS Total
 FROM Jobs j
-	JOIN PartsNeeded pn ON j.JobId = pn.JobId
-	JOIN Parts p ON pn.PartId = p.PartId
+	LEFT JOIN Orders o ON o.JobId = j.JobId
+	LEFT JOIN OrderParts op ON op.OrderId = o.OrderId
+	LEFT JOIN Parts p ON p.PartId = op.PartId
 WHERE j.Status = 'Finished'
 GROUP BY j.JobId
 ORDER BY Total DESC, j.JobId
 
---10. Missing Parts?????
-SELECT *
+--10. Missing Parts
+SELECT
+	p.PartId,
+	p.Description,
+	pn.Quantity AS Required,
+	p.StockQty AS [In Stock],
+	IIF(o.Delivered = 0, op.Quantity, 0) AS Ordered
 FROM Parts p
 	LEFT JOIN PartsNeeded pn ON pn.PartId = p.PartId
 	LEFT JOIN Jobs j ON j.JobId = pn.JobId
 	LEFT JOIN Orders o ON o.JobId = j.JobId
-	LEFT JOIN OrderParts op ON op.OrderId = o.OrderId
-WHERE j.Status != 'Finished'
+	LEFT JOIN OrderParts op ON op.PartId = p.PartId --op.OrderId = o.OrderId
+WHERE j.Status != 'Finished' AND p.StockQty + IIF(o.Delivered = 0, op.Quantity, 0) < pn.Quantity
 ORDER BY p.PartId
 
+SELECT p.PartId,p.[Description],
+          SUM(pn.Quantity) AS [Required],
+          SUM(p.StockQty) AS [IN Stock], 0 AS Ordered
+     FROM Jobs j
+FULL JOIN Orders o ON j.JobId = o.JobId
+     JOIN PartsNeeded pn ON pn.JobId = j.JobId
+     JOIN Parts p ON p.PartId = pn.PartId
+    WHERE j.STATUS <> 'Finished' AND o.Delivered IS NULL
+ GROUP BY p.PartId,p.Description
+   HAVING SUM(p.StockQty) < SUM(pn.Quantity) 
+
 --11. Place Order???
-CREATE PROCEDURE usp_PlaceOrder(@jobID INT, @partSN INT, @quantity INT)
+CREATE PROCEDURE usp_PlaceOrder(@jobID INT, @partSN VARCHAR(50), @quantity INT)
 AS
+	DECLARE @status VARCHAR(10) = (SELECT Status FROM Jobs WHERE JobId = @jobID)
+	DECLARE @partId INT = (SELECT PartId FROM Parts WHERE SerialNumber = @partSN)
+
+	IF (@quantity <= 0)
+		THROW 50012, 'Part quantity must be more than zero!', 1
+	ELSE IF (@status IS NULL)
+		THROW 50013, 'Job not found!', 1
+	ELSE IF (@status = 'Finished')
+		THROW 50011, 'This job is not active!', 1
+	ELSE IF (@jobID IS NULL)
+		THROW 50014, 'Part not found!', 1
+
+	DECLARE @orderId INT = (SELECT OrderId
+							FROM Orders
+							WHERE JobId = @jobID AND IssueDate IS NULL)
+
+IF (@orderId IS NULL)
+BEGIN
+	INSERT INTO Orders (JobId, IssueDate) VALUES (@jobID, NULL)
+END
+
+SET @orderId = (SELECT OrderId FROM Orders
+				WHERE JobId = @jobID AND IssueDate IS NULL)
+DECLARE @orderPartExists INT = (SELECT OrderId FROM OrderParts WHERE OrderId = @orderId AND PartId = @partId)
+
+IF (@orderPartExists IS NULL)
+BEGIN
+	INSERT INTO OrderParts (OrderId, PartId, Quantity) VALUES
+	(@orderId, @partId, @quantity)
+END
+
+ELSE
+BEGIN
+		UPDATE OrderParts
+		SET Quantity += @quantity
+		WHERE OrderId = @orderId AND PartId = @partId
+END
+
+
+--ANOTHER SOLUTION
+
+CREATE PROC usp_PlaceOrder @JobId INT, @SerialNumber VARCHAR(50),@Quantity INT
+ AS
+--- Limitations -------  
+IF NOT EXISTS (SELECT JobId FROM Jobs WHERE JobId = @JobId) 
+    THROW 50013, 'Job not found!' , 1
+ELSE
+    DECLARE @JobStatus VARCHAR(11) = (SELECT [STATUS] FROM Jobs WHERE JobId = @JobId)
+ 
+IF @JobStatus = 'Finished'
+    THROW 50011, 'This job is not active!', 1
+ 
+IF NOT EXISTS (SELECT PartId FROM Parts WHERE SerialNumber = @SerialNumber)
+    THROW 50014, 'Part not found!' , 1
+ELSE
+     DECLARE @PartId INT = (SELECT PartId FROM Parts WHERE SerialNumber = @SerialNumber)
+ 
+IF @Quantity <= 0 
+    THROW 50012, 'Part quantity must be more than zero!', 1
+ 
+DECLARE @OrderId INT
+---- if order already exists ---------
+IF EXISTS (SELECT OrderId FROM Orders WHERE JobId=@JobId AND IssueDate IS NULL)
+    BEGIN
+    SET @OrderId =(SELECT TOP(1) OrderId FROM Orders WHERE JobId=@JobId AND 
+                            IssueDate IS NULL) 
+    ----- if the part not in that existing order -------- 
+    IF NOT EXISTS (SELECT PartId FROM OrderParts 
+                    WHERE OrderId = @OrderId AND PartId = @PartId)
+        BEGIN 
+        INSERT INTO OrderParts (OrderId,PartId,Quantity)
+            VALUES (@OrderId, @PartId, @Quantity)
+        END
+    ELSE
+     ----- if the part already in the order --------------
+        BEGIN
+        UPDATE OrderParts
+        SET Quantity +=@Quantity
+        WHERE OrderId = @OrderId AND PartId = @PartId
+        END
+    END
+----- order not exists ----------
+ELSE
+    BEGIN
+        INSERT INTO Orders (JobId,IssueDate)
+                VALUES (@JobId,NULL)
+        SET @OrderId = (SELECT OrderId FROM Orders
+                          WHERE JobId = @JobId AND IssueDate IS NULL)
+        INSERT INTO OrderParts (OrderId,PartId,Quantity)
+        VALUES (@OrderId, @PartId,@Quantity)
+    END
+
+
 
 --12. Cost of Order  ???Invalid object name 'PartsNeeded'.???
 CREATE FUNCTION udf_GetCost(@jobID INT)
@@ -167,12 +280,17 @@ RETURNS DECIMAL(6,2)
 AS
 BEGIN
 	DECLARE @Result DECIMAL(6,2)
-	SET @Result = (SELECT SUM(Price) AS Total
-	FROM Jobs j
-		JOIN PartsNeeded pn ON j.JobId = pn.JobId
-		JOIN Parts p ON pn.PartId = p.PartId
+	SET @Result = (SELECT SUM(Price * op.Quantity) AS Total
+		FROM Jobs j
+			LEFT JOIN Orders o ON o.JobId = j.JobId
+			LEFT JOIN OrderParts op ON op.OrderId = o.OrderId
+			LEFT JOIN Parts p ON p.PartId = op.PartId
 		WHERE j.JobId = @jobID
 	GROUP BY j.JobId)
+
+	IF(@Result IS NULL)
+	SET @Result = 0
+
 	RETURN @Result
 END
 
