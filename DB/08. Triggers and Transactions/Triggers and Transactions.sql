@@ -107,3 +107,35 @@ EXEC usp_DepositMoney @receiverId, @amount
 COMMIT
 
 --19. Trigger
+--1.
+CREATE TRIGGER tr_restrictItems ON UserGameItems INSTEAD OF INSERT
+AS
+DECLARE @itemId INT = (SELECT ItemId FROM inserted)
+DECLARE @userGameId INT = (SELECT UserGameId FROM inserted)
+
+DECLARE @itemLevel INT = (SELECT MinLevel FROM Items WHERE Id = @itemId)
+DECLARE @userGameLevel INT = (SELECT [Level] FROM UsersGames WHERE Id = @userGameId)
+
+IF(@userGameLevel >= @itemLevel)
+BEGIN
+	INSERT INTO UserGameItems(ItemId, UserGameId) VALUES
+	(@itemId, @userGameId)
+END
+
+--2.
+SELECT * FROM 
+USERS u
+JOIN UsersGames ug ON ug.UserId = u.Id
+JOIN Games g ON g.Id = ug.GameId
+WHERE g.Name = 'Bali' AND u.Username IN ('baleremuda', 'loosenoise', 'inguinalself', 'buildingdeltoid', 'monoxidecos')
+
+UPDATE UsersGames
+SET Cash += 50000
+WHERE GameId = (SELECT Id FROM Games WHERE Name = 'Bali') AND
+	  UserId IN (SELECT Id FROM Users WHERE Username IN ('baleremuda', 'loosenoise', 'inguinalself', 'buildingdeltoid', 'monoxidecos'))
+
+--https://www.youtube.com/watch?v=dmnT7VwFtEs&feature=emb_title&ab_channel=SoftwareUniversity%28SoftUni%29
+
+-- From 00:50 To 01:15h
+
+--20. *Massive Shopping
