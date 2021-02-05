@@ -115,3 +115,45 @@ GROUP BY p.[Name]
 ORDER BY JourneysCount DESC, p.[Name]
 
 --10. Select Special Colonists
+SELECT k.JobDuringJourney, k.FullName, JobRank
+	FROM(SELECT 
+	JobDuringJourney,
+	FirstName + ' ' + LastName AS FullName,
+	c.BirthDate,
+	DENSE_RANK() OVER(PARTITION BY JobDuringJourney ORDER BY c.BirthDate) AS JobRank
+	FROM Colonists c
+	JOIN TravelCards tc ON tc.ColonistId = c.Id) AS k
+	WHERE k.JobRank = 2
+	ORDER BY JobDuringJourney
+
+--11. Get Colonists Count
+CREATE FUNCTION dbo.udf_GetColonistsCount(@PlanetName VARCHAR (30))
+RETURNS INT
+BEGIN
+	DECLARE @Result INT = (SELECT COUNT(*) AS [Count]
+	FROM Colonists c
+	JOIN TravelCards tc ON tc.ColonistId = c.Id
+	JOIN Journeys j ON j.Id = tc.JourneyId
+	JOIN Spaceports s ON s.Id = j.DestinationSpaceportId
+	JOIN Planets p ON p.Id = s.PlanetId
+	WHERE p.Name = @PlanetName
+	GROUP BY p.Name)
+	RETURN @Result
+END
+
+SELECT dbo.udf_GetColonistsCount('Otroyphus')
+
+SELECT p.Name, COUNT(*) AS [Count]
+	FROM Colonists c
+	JOIN TravelCards tc ON tc.ColonistId = c.Id
+	JOIN Journeys j ON j.Id = tc.JourneyId
+	JOIN Spaceports s ON s.Id = j.DestinationSpaceportId
+	JOIN Planets p ON p.Id = s.PlanetId
+	GROUP BY p.Name
+
+--12. Change Journey Purpose
+CREATE PROC usp_ChangeJourneyPurpose(@JourneyId INT, @NewPurpose VARCHAR(50))
+AS
+
+
+

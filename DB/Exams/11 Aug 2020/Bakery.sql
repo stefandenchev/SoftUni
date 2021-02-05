@@ -156,3 +156,21 @@ LEFT JOIN Distributors d ON c.Id = d.CountryId
 LEFT JOIN Ingredients i ON i.DistributorId = d.Id
 GROUP BY c.Name, d.Name
 ORDER BY c.[Name], d.[Name]
+
+--11. Customers With Countries
+CREATE VIEW v_UserWithCountries
+AS
+	SELECT
+		   FirstName + ' ' + LastName AS CustomerName,
+		   Age,
+		   Gender,
+		   co.[Name] AS CountryName
+	FROM Customers cu
+	JOIN Countries co ON co.Id = cu.CountryId
+	ORDER BY Age
+
+	SELECT TOP 5 *
+  FROM v_UserWithCountries
+ ORDER BY Age
+
+ --12. Delete Products
