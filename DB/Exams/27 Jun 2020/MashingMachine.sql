@@ -130,7 +130,7 @@ JOIN Jobs j ON m.MechanicId = j.MechanicId
 GROUP BY m.MechanicId, FirstName, LastName
 ORDER BY m.MechanicId
 
---08. Available Mechanics??
+--08. Available Mechanics
 SELECT CONCAT(FirstName,' ',LastName) AS Available
        FROM Mechanics m
   LEFT JOIN Jobs j ON j.MechanicId = m.MechanicId
