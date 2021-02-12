@@ -38,7 +38,8 @@ HAVING COUNT(i.Id) >= 10
 ORDER BY [Items Count] DESC, [Items Price] DESC, Username
 
 --05. All Items with Greater than Average Statistics
---no
+--nope
+
 --SELECT *
 --FROM (SELECT
 --	i.Name,
@@ -50,3 +51,6 @@ ORDER BY [Items Count] DESC, [Items Price] DESC, Username
 --FROM Items i
 --JOIN [Statistics] s ON s.Id = i.StatisticId) AS st
 --HAVING Mind > AVG(st.Mind)
+
+--06. Display All Items about Forbidden Game Type
+
