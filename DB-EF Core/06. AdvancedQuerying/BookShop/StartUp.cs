@@ -1,5 +1,6 @@
 ﻿namespace BookShop
 {
+    using BookShop.Models.Enums;
     using Data;
     using Initializer;
     using System;
@@ -36,11 +37,10 @@
 
         public static string GetBooksByAgeRestriction(BookShopContext context, string command)
         {
+            var ageRestrict = Enum.Parse<AgeRestriction>(command, true);
+
             var books = context.Books
-                .AsEnumerable()
-                .Where(x => x.AgeRestriction
-                    .ToString()
-                    .ToLower() == command.ToLower())
+                .Where(x => x.AgeRestriction == ageRestrict)
                 .Select(x => x.Title)
                 .OrderBy(x => x)
                 .ToList();
@@ -51,9 +51,7 @@
         public static string GetGoldenBooks(BookShopContext context)
         {
             var books = context.Books
-                .AsEnumerable()
-                .Where(x => x.EditionType
-                    .ToString() == "Gold" && x.Copies < 5000)
+                .Where(x => x.EditionType == EditionType.Gold && x.Copies < 5000)
                 .Select(x => new
                 {
                     Title = x.Title,
@@ -122,26 +120,32 @@
                 .Select(x => x.ToLower())
                 .ToList();
 
-            List<string> books = new List<string>();
+            /*List<string> books = new List<string>();
 
             foreach (var category in categories)
             {
                 List<string> current = context.Books
-                    .Where(x => x.BookCategories.Any(x => x.Category.Name.ToLower()
-                    == category))
+                    .Where(x => x.BookCategories.Any(x => x.Category.Name.ToLower() == category))
                     .Select(x => x.Title)
                     .ToList();
 
                 books.AddRange(current);
-            }
+            }*/
 
-            return String.Join(Environment.NewLine, books.OrderBy(x => x));
+            var books = context.BooksCategories
+                .Where(x => categories.Contains(x.Category.Name.ToLower()))
+                .Select(x => x.Book.Title)
+                .OrderBy(title => title)
+                .ToArray();
+
+            var result = String.Join(Environment.NewLine, books);
+
+            return result;
         }
 
         public static string GetBooksReleasedBefore(BookShopContext context, string date)
         {
-            DateTime dt = DateTime.ParseExact(date.ToString(),
-                "dd-MM-yyyy", CultureInfo.InvariantCulture);
+            DateTime dt = DateTime.ParseExact(date, "dd-MM-yyyy", CultureInfo.InvariantCulture);
 
             var books = context.Books
                 .Where(x => x.ReleaseDate < dt)
@@ -168,7 +172,7 @@
         public static string GetAuthorNamesEndingIn(BookShopContext context, string input)
         {
             var authors = context.Authors
-                .Where(x => x.FirstName.EndsWith(input))
+                .Where(x => x.FirstName.EndsWith(input)) //EF.Functions.Like(x.FirstName, $"%{input}")
                 .Select(x => new
                 {
                     FullName = x.FirstName + " " + x.LastName
@@ -271,11 +275,7 @@
                 .Select(x => new
                 {
                     Name = x.Name,
-                    Profit = x.CategoryBooks.Select(x => new
-                    { 
-                        BookProfit = x.Book.Price * x.Book.Copies
-                    })
-                    .Sum(x => x.BookProfit)
+                    Profit = x.CategoryBooks.Sum(x => x.Book.Price * x.Book.Copies)
                 })
                 .OrderByDescending(x => x.Profit)
                 .ToList();
@@ -314,7 +314,7 @@
                 sb.AppendLine($"--{category.Name}");
                 foreach (var book in category.Books)
                 {
-                    sb.AppendLine($"{book.BookTitle} ({book.ReleaseDate.Value.Year.ToString()})");
+                    sb.AppendLine($"{book.BookTitle} ({book.ReleaseDate.Value.Year})");
                 }
             }
 
@@ -341,15 +341,10 @@
                 .Where(x => x.Copies < 4200)
                 .ToList();
 
-            var count = books.Count();
-
-            foreach (var book in books)
-            {
-                context.Remove(book);
-            }
+            context.Books.RemoveRange(books);
 
             context.SaveChanges();
-            return count;
+            return books.Count();
         }
     }
 }
