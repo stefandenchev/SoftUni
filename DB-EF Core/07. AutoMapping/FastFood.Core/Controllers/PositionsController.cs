@@ -24,6 +24,11 @@
             return this.View();
         }
 
+        public IActionResult Edit()
+        {
+            return this.View();
+        }
+
         [HttpPost]
         public IActionResult Create(CreatePositionInputModel model)
         {

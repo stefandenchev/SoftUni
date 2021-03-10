@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Positions\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Categories\All.cshtml" />
     <None Include="Views\Categories\Create.cshtml" />
     <None Include="Views\Employees\All.cshtml" />
@@ -16,6 +20,7 @@
     <None Include="Views\Orders\All.cshtml" />
     <None Include="Views\Orders\Create.cshtml" />
     <None Include="Views\Positions\All.cshtml" />
+    <None Include="Views\Positions\Edit.cshtml" />
     <None Include="Views\Positions\Create.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
     <None Include="Views\Shared\_CookieConsentPartial.cshtml" />
