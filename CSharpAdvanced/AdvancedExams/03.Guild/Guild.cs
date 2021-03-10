@@ -54,7 +54,6 @@ namespace Guild
                 if (player.Class == Class)
                 {
                     kicked.Add(player);
-                    roster.Remove(player);
                 }
             }
             return kicked.ToArray();
