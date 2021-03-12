@@ -11,7 +11,7 @@ namespace FastFood.Data
         public FastFoodContext CreateDbContext(string[] args)
         {
             var builder = new DbContextOptionsBuilder<FastFoodContext>();
-            builder.UseSqlServer("Server=DESKTOP-H1L2UK7\\MSSQLSERVER01;Database=FastFood;Trusted_Connection=True;MultipleActiveResultSets=true");
+            builder.UseSqlServer("Server=.;Database=FastFood;Trusted_Connection=True;MultipleActiveResultSets=true");
 
             return new FastFoodContext(builder.Options);
         }

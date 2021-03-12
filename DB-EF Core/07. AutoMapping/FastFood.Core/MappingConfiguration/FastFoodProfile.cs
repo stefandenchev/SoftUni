@@ -45,6 +45,8 @@
             this.CreateMap<CreateOrderInputModel, Order>()
                 .ForMember(x => x.DateTime, y => y.MapFrom(s => DateTime.Now));
 
+            this.CreateMap<CreateOrderInputModel, OrderItem>();
+
             this.CreateMap<Order, OrderAllViewModel>()
                 .ForMember(x => x.Employee, y => y.MapFrom(s => s.Employee.Name))
                 .ForMember(x => x.OrderId, y => y.MapFrom(s => s.Id))

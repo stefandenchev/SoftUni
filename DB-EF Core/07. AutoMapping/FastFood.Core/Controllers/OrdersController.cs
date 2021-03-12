@@ -35,7 +35,7 @@
         public IActionResult Create(CreateOrderInputModel model)
         {
             var order = this.mapper.Map<Order>(model);
-            var orderItem = this.mapper.Map<Order>(model);
+            var orderItem = this.mapper.Map<OrderItem>(model);
 
             order.OrderItems.Add(orderItem);
 
