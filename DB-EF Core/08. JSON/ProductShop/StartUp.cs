@@ -60,7 +60,7 @@ namespace ProductShop
                         })
                     }
                 })
-                .OrderByDescending(x => x.soldProducts.products.Count())
+                .OrderByDescending(x => x.soldProducts.count)
                 .ToList();
 
             var result = new
