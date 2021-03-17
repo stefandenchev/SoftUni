@@ -1,9 +1,11 @@
-﻿using CarDealer.Data;
+﻿using AutoMapper;
+using CarDealer.Data;
 using CarDealer.Dtos.Import;
 using CarDealer.Models;
 using CarDealer.XmlHelp;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -12,6 +14,7 @@ namespace CarDealer
 {
     public class StartUp
     {
+        static IMapper mapper;
         public static void Main(string[] args)
         {
             var db = new CarDealerContext();
@@ -20,15 +23,31 @@ namespace CarDealer
 
             //var suppliersXml = File.ReadAllText("./Datasets/suppliers.xml");
             //var partsXml = File.ReadAllText("./Datasets/parts.xml");
-            var carsXml = File.ReadAllText("./Datasets/cars.xml");
+            //var carsXml = File.ReadAllText("./Datasets/cars.xml");
+            var customersXml = File.ReadAllText("./Datasets/customers.xml");
 
             //ImportSuppliers(db, suppliersXml);
             //ImportParts(db, partsXml);
-            var resultCars = ImportCars(db, carsXml);
+            //var resultCars = ImportCars(db, carsXml);
+            var resultCustomers = ImportCustomers(db, customersXml);
 
-            Console.WriteLine(resultCars);
+            Console.WriteLine(resultCustomers);
         }
 
+        //12. Import Customers
+        public static string ImportCustomers(CarDealerContext context, string inputXml)
+        {
+            const string root = "Customers";
+            InitializeAutoMapper();
+
+            var customersDto = XmlConverter.Deserialize<ImportCustomerDTO>(inputXml, root);
+            var customers = mapper.Map<Customer[]>(customersDto);
+
+            context.Customers.AddRange(customers);
+            context.SaveChanges();
+
+            return $"Successfully imported {customers.Count()}";
+        }
 
         //11. Import Cars
         public static string ImportCars(CarDealerContext context, string inputXml)
@@ -156,6 +175,13 @@ namespace CarDealer
         }
 
 
+        private static void InitializeAutoMapper()
+        {
+            var config = new MapperConfiguration(cfg => {
+                cfg.AddProfile<CarDealerProfile>();
+            });
 
+            mapper = config.CreateMapper();
+        }
     }
 }
