@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Xml.Serialization;
 
 namespace ProductShop
@@ -29,7 +30,72 @@ namespace ProductShop
             //Console.WriteLine(ImportCategories(db, categoriesXml));
             //Console.WriteLine(ImportCategoryProducts(db, categoryProductsXml));
 
-            Console.WriteLine(GetSoldProducts(db));
+            Console.WriteLine(GetUsersWithProducts(db));
+        }
+        //08. Export Users and Products
+        public static string GetUsersWithProducts(ProductShopContext context)
+        {
+            StringBuilder sb = new StringBuilder();
+            var namespaces = new XmlSerializerNamespaces();
+            namespaces.Add(String.Empty, String.Empty);
+
+            var users = new UserRootDTO()
+            {
+                Count = context.Users.Count(u => u.ProductsSold.Any(p => p.Buyer != null)),
+                Users = context.Users
+                    .ToArray()
+                    .Where(u => u.ProductsSold.Any(p => p.Buyer != null))
+                    .OrderByDescending(u => u.ProductsSold.Count)
+                    .Take(10)
+                    .Select(u => new UserExportDTO()
+                    {
+                        FirstName = u.FirstName,
+                        LastName = u.LastName,
+                        Age = u.Age,
+                        SoldProducts = new SoldProductsDTO()
+                        {
+                            Count = u.ProductsSold.Count(ps => ps.Buyer != null),
+                            Products = u.ProductsSold
+                                .ToArray()
+                                .Where(ps => ps.Buyer != null)
+                                .Select(ps => new ExportProductSoldDTO()
+                                {
+                                    Name = ps.Name,
+                                    Price = ps.Price
+                                })
+                                .OrderByDescending(p => p.Price)
+                                .ToArray()
+                        }
+                    })
+
+                    .ToArray()
+            };
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(UserRootDTO), new XmlRootAttribute("Users"));
+
+            xmlSerializer.Serialize(new StringWriter(sb), users, namespaces);
+
+            return sb.ToString().Trim();
+        }
+        //07. Export Categories By Products Count
+        public static string GetCategoriesByProductsCount(ProductShopContext context)
+        {
+            var categories = context.Categories
+                .Select(x => new CategoryExportModel
+                {
+                    Name = x.Name,
+                    Count = x.CategoryProducts.Count,
+                    AveragePrice = x.CategoryProducts.Average(x => x.Product.Price),
+                    TotalRevenue = x.CategoryProducts.Sum(x => x.Product.Price)
+                })
+                .OrderByDescending(x => x.Count)
+                .ThenBy(x => x.TotalRevenue)
+                .ToList();
+
+            var root = "Categories";
+            var result = XmlConverter.Serialize(categories, root);
+
+            return result;
         }
         //06. Export Sold Products
         public static string GetSoldProducts(ProductShopContext context)

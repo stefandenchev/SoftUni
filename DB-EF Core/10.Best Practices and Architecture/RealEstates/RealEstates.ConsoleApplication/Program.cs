@@ -20,13 +20,14 @@ namespace RealEstates.ConsoleApplication
                 Console.WriteLine("Choose an option:");
                 Console.WriteLine("1. Property search");
                 Console.WriteLine("2. Most expensive districts");
+                Console.WriteLine("3. Average price per square meter");
                 Console.WriteLine("0. EXIT");
                 bool parsed = int.TryParse(Console.ReadLine(), out int option);
                 if (parsed && option == 0)
                 {
                     break;
                 }
-                if (parsed && option >= 1 && option <= 2)
+                if (parsed && option >= 1 && option <= 3)
                 {
                     switch (option)
                     {
@@ -35,6 +36,9 @@ namespace RealEstates.ConsoleApplication
                             break;
                         case 2:
                             MostExpensiveDistricts(db);
+                            break;
+                        case 3:
+                            AveragePricePerSquareMeter(db);
                             break;
                         default:
                             break;
@@ -46,6 +50,12 @@ namespace RealEstates.ConsoleApplication
             }
         }
 
+        private static void AveragePricePerSquareMeter(ApplicationDbContext db)
+        {
+            IPropertiesService propertiesService = new PropertiesService(db);
+            Console.WriteLine($"Average price per square meter: {propertiesService.AveragePricePerSquareMeter():0.00}€/m²");
+        }
+
         private static void MostExpensiveDistricts(ApplicationDbContext db)
         {
             Console.WriteLine("Districts count:");
@@ -55,7 +65,7 @@ namespace RealEstates.ConsoleApplication
             foreach (var district in districts)
             {
                 Console.WriteLine($"{district.Name} =>" +
-                    $" {district.AveragePricePerSquareMeter}€/m² ({district.PropertiesCount})");
+                    $" {district.AveragePricePerSquareMeter:0.00}€/m² ({district.PropertiesCount})");
             }
         }
 
