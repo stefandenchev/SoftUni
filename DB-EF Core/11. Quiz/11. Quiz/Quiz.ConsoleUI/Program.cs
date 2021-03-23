@@ -17,10 +17,21 @@ namespace Quiz.ConsoleUI
             ConfigureServices(serviceCollection);
             var serviceProvider = serviceCollection.BuildServiceProvider();
 
-            var quizService = serviceProvider.GetService<IQuizService>();
-            var quiz = quizService.GetQuizById(1);
+/*            var questionService = serviceProvider.GetService<IQuestionService>();
+            questionService.Add("1 + 1", 1);
 
-            Console.WriteLine(quiz.Title);
+            var answerService = serviceProvider.GetService<IAnswerService>();
+            answerService.Add("2", 5, true, 2);
+
+            var userAnswerService = serviceProvider.GetService<IUserAnswerService>();
+            userAnswerService.AddUserAnswer("54bd0a0d-ebe4-487e-9871-ecccbf6a0378", 1, 2, 1);*/
+
+            var quizService = serviceProvider.GetService<IUserAnswerService>();
+            var quiz = quizService.GetUserResult("54bd0a0d-ebe4-487e-9871-ecccbf6a0378", 1);
+
+            Console.WriteLine(quiz);
+
+            /*Console.WriteLine(quiz.Title);
 
             foreach (var question in quiz.Questions)
             {
@@ -30,13 +41,10 @@ namespace Quiz.ConsoleUI
                 {
                     Console.WriteLine(answer.Title);
                 }
-            }
+            }*/
 
-            /*var questionService = serviceProvider.GetService<IQuestionService>();
-            questionService.Add("What is Entity Framework Core?", 1);*/
 
-            /*var answerService = serviceProvider.GetService<IAnswerService>();
-            answerService.Add("It is a MicroORM", 0, false, 1);*/
+
 
             /*var userAnswerService = serviceProvider.GetService<IUserAnswerService>();
             userAnswerService.AddUserAnswer("54bd0a0d-ebe4-487e-9871-ecccbf6a0378", 1, 1, 2);*/
