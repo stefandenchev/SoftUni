@@ -273,7 +273,7 @@ namespace Quiz.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Quizzes");
+                    b.ToTable("Quizes");
                 });
 
             modelBuilder.Entity("Quiz.Models.UserAnswer", b =>
