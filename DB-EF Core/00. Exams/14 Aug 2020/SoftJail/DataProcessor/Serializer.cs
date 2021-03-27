@@ -31,7 +31,7 @@
                      })
                      .OrderBy(x => x.OfficerName)
                      .ToList(),
-                     OfficerSalaries = p.PrisonerOfficers.Sum(x => x.Officer.Salary)
+                     TotalOfficerSalary = p.PrisonerOfficers.Sum(x => x.Officer.Salary)
                  })
                  .OrderBy(p => p.Name)
                  .ThenBy(p => p.Id)
@@ -53,7 +53,7 @@
                     IncarcerationDate = x.IncarcerationDate.ToString("yyyy-MM-dd"),
                     Messages = x.Mails.Select(x => new ExMessageDto
                     {
-                        Description = ReverseString(x.Description)
+                        Description = String.Join("", x.Description.Reverse())
                     })
                     .ToArray()
                 })
@@ -67,11 +67,11 @@
             return result;
         }
 
-        private static string ReverseString(string s)
+        /*private static string ReverseString(string s)
         {
             char[] array = s.ToCharArray();
             Array.Reverse(array);
             return new string(array);
-        }
+        }*/
     }
 }
