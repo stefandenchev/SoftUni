@@ -10,7 +10,10 @@ namespace SoftJail.DataProcessor.ImportDto
         [Required]
         [MinLength(3)]
         [MaxLength(25)]
+        //[StringLength(25, MinimumLength = 3)]
         public string Name { get; set; }
-        public List<ImCellsDto> Cells { get; set; }
+
+        [Required]
+        public ImCellsDto[] Cells { get; set; }
     }
 }
