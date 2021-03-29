@@ -1,6 +1,6 @@
 ﻿namespace VaporStore.DataProcessor
 {
-	using System;
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Globalization;
@@ -12,75 +12,72 @@
     using VaporStore.DataProcessor.Dto.Import;
 
     public static class Deserializer
-	{
-		private const string ErrorMessage = "Invalid Data";
-		public static string ImportGames(VaporStoreDbContext context, string jsonString)
-		{
-            throw new NotImplementedException();
-
-/*            StringBuilder sb = new StringBuilder();
-            List<Game> gamesToAdd = new List<Game>();
+    {
+        private const string ErrorMessage = "Invalid Data";
+        public static string ImportGames(VaporStoreDbContext context, string jsonString)
+        {
+            StringBuilder sb = new StringBuilder();
 
             GameImportModel[] games = JsonConvert.DeserializeObject<GameImportModel[]>(jsonString);
 
             foreach (var currGame in games)
             {
                 if (!IsValid(currGame)
-                    || !currGame.Tags.All(IsValid)
-                    || !currGame.Tags.Any())
+                    || !currGame.Tags.Any()) // Tags.Count() == 0
                 {
                     sb.AppendLine(ErrorMessage);
                     continue;
                 }
 
-                var releaseDate = DateTime.ParseExact(
-                    currGame.ReleaseDate,
-                    "dd/MM/yyyy",
-                    CultureInfo.InvariantCulture);
+                //Either find it in the DB or create it if missing.
+                var genre = context.Genres.FirstOrDefault(x => x.Name == currGame.Genre)
+                    ?? new Genre { Name = currGame.Genre }; 
+                var developer = context.Developers.FirstOrDefault(x => x.Name == currGame.Developer)
+                    ?? new Developer { Name = currGame.Developer };
+
 
                 Game game = new Game
                 {
                     Name = currGame.Name,
                     Price = currGame.Price,
-                    ReleaseDate = releaseDate,
-                    Developer = currGame.Developer.Name,
-                    Genre = currGame.Genre.Name,
-                    Tags = currGame.Tags.Select(x => new Tag
-                    {
-                        CellNumber = x.CellNumber,
-                        HasWindow = x.HasWindow
-                    })
-                    .ToList()
+                    ReleaseDate = currGame.ReleaseDate.Value,
+                    Developer = developer,
+                    Genre = genre
                 };
 
-                gamesToAdd.Add(games);
+                foreach (var tag in currGame.Tags)
+                {
+                    var gameTag = context.Tags.FirstOrDefault(x => x.Name == tag)
+                        ?? new Tag { Name = tag };
+                    game.GameTags.Add(new GameTag { Tag = gameTag });
+                }
 
-                sb.AppendLine($"Imported {department.Name} with {department.Cells.Count} cells");
+                context.Games.Add(game);
+                context.SaveChanges();
 
-            }
+                sb.AppendLine($"Added {currGame.Name} ({currGame.Genre}) with {currGame.Tags.Count()} tags!");
 
-            context.Games.AddRange(gamesToAdd);
-            context.SaveChanges();
+            } 
 
-            return sb.ToString().Trim();*/
+            return sb.ToString().TrimEnd();
         }
 
-		public static string ImportUsers(VaporStoreDbContext context, string jsonString)
-		{
-			throw new NotImplementedException();
-		}
+        public static string ImportUsers(VaporStoreDbContext context, string jsonString)
+        {
+            throw new NotImplementedException();
+        }
 
-		public static string ImportPurchases(VaporStoreDbContext context, string xmlString)
-		{
-			throw new NotImplementedException();
-		}
+        public static string ImportPurchases(VaporStoreDbContext context, string xmlString)
+        {
+            throw new NotImplementedException();
+        }
 
-		private static bool IsValid(object dto)
-		{
-			var validationContext = new ValidationContext(dto);
-			var validationResult = new List<ValidationResult>();
+        private static bool IsValid(object dto)
+        {
+            var validationContext = new ValidationContext(dto);
+            var validationResult = new List<ValidationResult>();
 
-			return Validator.TryValidateObject(dto, validationContext, validationResult, true);
-		}
-	}
+            return Validator.TryValidateObject(dto, validationContext, validationResult, true);
+        }
+    }
 }

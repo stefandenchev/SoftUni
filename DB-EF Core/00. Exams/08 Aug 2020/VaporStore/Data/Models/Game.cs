@@ -16,7 +16,6 @@ namespace VaporStore.Data.Models
         [Required]
         public string Name { get; set; }
         public decimal Price { get; set; }
-        [Required]
         public DateTime ReleaseDate { get; set; }
         public int DeveloperId  { get; set; }
         public Developer Developer { get; set; }
