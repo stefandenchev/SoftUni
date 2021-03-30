@@ -6,7 +6,7 @@ using VaporStore.Data.Models;
 
 namespace VaporStore.DataProcessor.Dto.Import
 {
-    public class GameImportModel
+    public class GameInputModel
     {
         [Required]
         public string Name { get; set; }
