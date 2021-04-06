@@ -94,15 +94,15 @@
                     .ToList()
                 };
 
-                /*                foreach (var card in currUser.Cards)
-                                {
-                                    user.Cards.Add(new Card
-                                    {
-                                        Number = card.Number,
-                                        Cvc = card.CVC,
-                                        Type = card.Type.Value
-                                    });
-                                }*/
+                /*foreach (var card in currUser.Cards)
+                  {
+                      user.Cards.Add(new Card
+                      {
+                          Number = card.Number,
+                          Cvc = card.CVC,
+                          Type = card.Type.Value
+                      });
+                  }*/
 
                 context.Users.Add(user);
                 context.SaveChanges();
