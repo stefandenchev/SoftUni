@@ -1,7 +1,7 @@
 function solve(myArray) {
     let resultArr = [];
     for (let num of myArray) {
-        if (num< 0) {
+        if (num < 0) {
             resultArr.unshift(num);
         } else {
             resultArr.push(num);

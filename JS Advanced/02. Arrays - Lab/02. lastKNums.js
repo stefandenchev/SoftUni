@@ -1,14 +1,16 @@
 function printSequence(n, k) {
-    let myArray = [1];
-    for (let i = 1; i < n; i++) {
-        let num = 0;
-        for (let j = k; j >= 0; j--) {
-            num += myArray[j];
-        }
-        myArray.push(num);
-    }
-    return myArray;
+  let result = [1];
+
+  for (let i = 0; i < n; i++) {
+    let currElement = result
+      .slice(k * -1)
+      .reduce((a, b) => a + b);
+
+    result[i] = currElement;
+  }
+
+  console.log(result.join(" "));
 }
 
-console.log(printSequence(6, 3));
-console.log(printSequence(8, 2));
+printSequence(6, 3);
+printSequence(8, 2);
