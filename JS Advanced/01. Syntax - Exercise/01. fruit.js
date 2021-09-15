@@ -1,7 +1,7 @@
 function shop(fruit, weight, price) {
-    let money = (price * weight / 1000).toFixed(2);
-    let kgs = (weight/1000).toFixed(2);
-    console.log(`I need $${money} to buy ${kgs} kilograms ${fruit}.`);
+    let kgs = weight / 1000;
+    let money = price * kgs;
+    console.log(`I need $${money.toFixed(2)} to buy ${kgs.toFixed(2)} kilograms ${fruit}.`);
 }
 
 shop('orange', 2500, 1.80)
