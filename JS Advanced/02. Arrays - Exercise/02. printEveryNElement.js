@@ -1,5 +1,5 @@
 function print(array, n) {
-    let result = array.filter((elem, i) => i % step === 0);
+    let result = array.filter((elem, i) => i % n === 0);
 /*     let result = [];
     for (let i = 0; i < array.length; i += n) {
         result.push(array[i]);

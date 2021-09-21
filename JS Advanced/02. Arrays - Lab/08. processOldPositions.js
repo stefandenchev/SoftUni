@@ -1,9 +1,8 @@
 function solve(myArray) {
-    let result = [];
-    for (let i = 1; i <= myArray.length; i+=2) {
-        result.push(myArray[i] * 2);        
-    }
-    result.reverse();
+    let result = myArray
+    .filter((v, i) => i % 2 == 1)
+    .map(x => x * 2)
+    .reverse();
     return result;
 }
 

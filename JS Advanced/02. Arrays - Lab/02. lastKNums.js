@@ -9,8 +9,8 @@ function printSequence(n, k) {
     result[i] = currElement;
   }
 
-  console.log(result.join(" "));
+  return result;
 }
 
-printSequence(6, 3);
-printSequence(8, 2);
+console.log(printSequence(6, 3));
+console.log(printSequence(8, 2));

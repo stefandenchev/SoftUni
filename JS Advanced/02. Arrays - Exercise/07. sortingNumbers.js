@@ -4,8 +4,7 @@ function sort(array) {
     const result = [];
 
     for (let i = 0; i < originalLength / 2; i++) {
-        result.push(array.shift());
-        result.push(array.pop());    
+        result.push(array.shift(), array.pop());
     }
     return result;
 }

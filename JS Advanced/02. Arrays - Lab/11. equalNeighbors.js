@@ -1,31 +1,30 @@
-function findEquals(arr) {
-
-    let counter = 0;
-
-    for (let i = 0; i < arr.length; i++) {
-        let subArr = arr[i];
-        for (let j = 0; j < subArr.length; j++) {
-            let checker = subArr[j];
-            if (i !== arr.length - 1) {
-                if (checker === subArr[j + 1] || checker === arr[i + 1][j]) {
-                    counter++;
+function findEquals(matrix) {
+    let neighbors = 0;
+    for (let row = 0; row < matrix.length; row++) {
+        for (let col = 0; col < matrix[row].length; col++) {
+            if (row < matrix.length - 1) {
+                if (matrix[row][col] == matrix[row + 1][col]) {
+                    neighbors++;
                 }
             }
-            else {
-                if (checker === subArr[j + 1]) {
-                    counter++;
+            if (col < matrix[row].length) {
+                if (matrix[row][col] == matrix[row][col + 1]) {
+                    neighbors++;
                 }
             }
         }
-
     }
-
-    return counter;
+    return neighbors;
 }
 
 console.log(findEquals([['2', '3', '4', '7', '0'],
 ['4', '0', '5', '3', '4'],
 ['2', '3', '5', '4', '2'],
 ['9', '8', '7', '5', '4']]
+));
+
+console.log(findEquals([['test', 'yes', 'yo', 'ho'],
+['well', 'done', 'yo', '6'],
+['not', 'done', 'yet', '5']]
 ));
 
