@@ -1,8 +1,8 @@
 function createObj(name, population, treasury) {
     const result = {
-        name: name,
-        population: population,
-        treasury: treasury
+        name,
+        population,
+        treasury
     }
     return result;
 }
