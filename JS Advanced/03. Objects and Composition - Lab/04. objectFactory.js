@@ -12,7 +12,7 @@ function factory(library, orders) {
     }
 }
 
-function factoryIterative(library, orders) {
+function factoryImperative(library, orders) {
     const result = [];
 
     for (let order of orders) {
