@@ -6,19 +6,10 @@ function getFibonator() {
         c = a + b;
         a = b;
         b = c;
-        return c;
+        return a;
     }
 
     return getNext;
-}
-
-function getFibonator() {
-    let [x, y, z] = [1, 1, 1];
-
-    return function getNext() {
-        [z, x, y] = [x, y, x + y];
-        return z;
-    };
 }
 
 let fib = getFibonator();
