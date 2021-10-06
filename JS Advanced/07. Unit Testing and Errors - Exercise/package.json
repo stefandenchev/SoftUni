@@ -1,0 +1,15 @@
+{
+  "name": "07.-unit-testing-and-errors---exercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01. requestValidator.js",
+  "scripts": {
+    "test": "mocha mathEnforcer.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.3.4"
+  }
+}
