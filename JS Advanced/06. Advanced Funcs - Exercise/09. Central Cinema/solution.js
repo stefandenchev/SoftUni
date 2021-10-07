@@ -15,7 +15,7 @@ function solve() {
 
             movie.innerHTML =
                 `<span>${name.value}</span>
-             <strong>${hall.value}</strong>
+             <strong>Hall: ${hall.value}</strong>
              <div>
                 <strong>${Number(ticketPrice.value).toFixed(2)}</strong>
                 <input placeholder="Tickets Sold">

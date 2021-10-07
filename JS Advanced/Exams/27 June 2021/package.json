@@ -1,0 +1,12 @@
+{
+  "name": "27-june-2021",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "test": "mocha testNumbers.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
