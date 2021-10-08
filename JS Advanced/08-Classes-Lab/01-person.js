@@ -10,3 +10,8 @@ class Person {
         return `${this.firstName} ${this.lastName} (age: ${this.age}, email: ${this.email})`;
     }
 }
+
+const p1 = new Person('Anna', 'Simpson', 22, 'anna@yahoo.com');
+const p2 = new Person('Softuni');
+const p3 = new Person('Stephan', 'Johnson', 25);
+const p4 = new Person('Gabriel', 'Peterson', 24, 'g.p@gmail.com');
