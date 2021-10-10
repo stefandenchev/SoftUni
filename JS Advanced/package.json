@@ -1,5 +1,17 @@
 {
   "dependencies": {
-    "chai": "^4.3.4"
-  }
+    "chai": "^4.3.4",
+    "mocha": "^9.1.2"
+  },
+  "name": "js-advanced",
+  "version": "1.0.0",
+  "main": "domCheatSheet.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
