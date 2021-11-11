@@ -70,7 +70,7 @@ class SummerCamp {
 
     toString() {
         let result = [`${this.organizer} will take ${this.listOfParticipants.length} participants on camping to ${this.location}`];
-        this.listOfParticipants.sort((a, b) => a.wins - b.wins);
+        this.listOfParticipants.sort((a, b) => b.wins - a.wins);
         this.listOfParticipants.forEach((e) => result.push(`${e.name} - ${e.condition} - ${e.power} - ${e.wins}`));
         return result.join('\n');
 
