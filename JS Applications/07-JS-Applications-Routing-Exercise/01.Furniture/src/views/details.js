@@ -52,6 +52,8 @@ export function detailsPage(ctx) {
 async function loadItem(id, onDelete) {
     const item = await getById(id);
 
+    fuckMe = 2;
+
     const userData = getUserData();
     const isOwner = userData.id == item._ownerId;
 

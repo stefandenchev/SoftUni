@@ -1,7 +1,6 @@
-import { clearUserData, getUserData, setUserData } from '../util.js'
+import { clearUserData, getUserData, setUserData } from '../util.js';
 
 const host = 'http://localhost:3030';
-
 
 async function request(url, options) {
     try {
@@ -21,7 +20,6 @@ async function request(url, options) {
         } else {
             return response.json();
         }
-
     } catch (error) {
         alert(error.message);
         throw error;
@@ -68,28 +66,28 @@ export async function login(email, password) {
     const result = await post('/users/login', { email, password });
 
     const userData = {
-        email: result.email,
-        id: result._id,
-        token: result.accessToken
-    };
-    // sessionStorage.setItem('userData', JSON.stringify(userData));
-    setUserData(userData);
+            email: result.email,
+            id: result._id,
+            token: result.accessToken,
+        }
+        // sessionStorage.setItem('userData', JSON.stringify(userData));
+    setUserData(userData)
 }
 
 export async function register(email, password) {
     const result = await post('/users/register', { email, password });
 
     const userData = {
-        email: result.email,
-        id: result._id,
-        token: result.accessToken
-    };
-    // sessionStorage.setItem('userData', JSON.stringify(userData));
+            email: result.email,
+            id: result._id,
+            token: result.accessToken,
+        }
+        // sessionStorage.setItem('userData', JSON.stringify(userData));
     setUserData(userData);
 }
 
 export async function logout() {
     await get('/users/logout');
-    // sessionStorage.removeItem('userData');
+        // sessionStorage.removeItem('userData');
     clearUserData();
 }
